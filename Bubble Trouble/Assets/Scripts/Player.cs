@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     -----------Variables---------
     \***************************/
 
+    
+
     //init other objects
     public Ingredient[] ingredients;
     public GameObject cauldronObj;
@@ -26,9 +28,12 @@ public class Player : MonoBehaviour
 
     //declare health variables
     [SerializeField]
-    private int health;
+    //private int health
     private BoxCollider2D boxCollider;
     private List<GameObject> enemies;
+
+    //declare score
+    public int score;
 
 
     /***************************\
@@ -38,7 +43,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         //init variables
-        health = 3;
+        score = 0;
+        //health = 3;
         boxCollider = GetComponent<BoxCollider2D>();
         //init others
         cauldron = cauldronObj.GetComponent<Cauldron>();
@@ -136,7 +142,7 @@ public class Player : MonoBehaviour
                 witchHealth.TakeDamage(1);
                 Destroy(enemy);
                 enemies.Remove(enemy);
-                health--;
+                //health--;
                 return;
             }
         }

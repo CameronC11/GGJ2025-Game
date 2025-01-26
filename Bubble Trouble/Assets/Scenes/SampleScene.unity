@@ -313,6 +313,7 @@ MonoBehaviour:
   enemy: {fileID: 8111519712898719038, guid: 7f96d991ad5f08f4fbf2fe90a7912a47, type: 3}
   cooldown: 0
   enemies: []
+  playerObj: {fileID: 585375399}
 --- !u!1 &140868642
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentIngredient: {fileID: 0}
   enemySpawnerObj: {fileID: 77317479}
+  playerObj: {fileID: 585375399}
   bubblePrefab: {fileID: 10541644492896380, guid: eebbe547156bbbc49bdacf2abdd03f3b, type: 3}
   cauldronPos: {x: 0, y: 0}
   cooldown: 0
@@ -1063,6 +1065,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 77317479}
   draggedIngredient: {fileID: 0}
   health: 0
+  score: 0
 --- !u!61 &585375403
 BoxCollider2D:
   m_ObjectHideFlags: 0
