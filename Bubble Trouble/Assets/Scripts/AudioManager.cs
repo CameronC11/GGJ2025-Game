@@ -10,6 +10,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
     
+    public float SfxVolume 
+    { 
+        get { return sfxSource.volume; }
+        set { sfxSource.volume = value; }
+    }
+
+    
     [SerializeField] private AudioClip bgmClip;
     [SerializeField] private AudioClip boilClip;
     [SerializeField] private AudioClip witchLaughClip;
@@ -118,7 +125,9 @@ public class AudioManager : MonoBehaviour
             AudioSource tempSource = gameObject.AddComponent<AudioSource>();
             tempSource.clip = popClip;
             tempSource.time = 0.22f; // Start 0.1 seconds into the clip
+            tempSource.volume = sfxSource.volume; // Match the SFX volume
             tempSource.Play();
+
             
             // Clean up the temporary AudioSource after it's done
             StartCoroutine(CleanupTempAudioSource(tempSource, popClip.length - 0.1f));
