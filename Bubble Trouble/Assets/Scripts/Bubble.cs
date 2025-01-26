@@ -40,26 +40,28 @@ public class Bubble : MonoBehaviour
 
     //Move to enemy
     void moveToEnemy()
+{
+    GameObject closest = closestEnemy();
+    if (closest != null && closest.GetComponent<Enemy>().color == color)
     {
-        GameObject closest = closestEnemy();
-        if(closest != null && closest.GetComponent<Enemy>().color == color)
+        // Use a higher base speed, e.g., 5.0f, multiplied by Time.deltaTime
+        transform.position = Vector2.MoveTowards(transform.position, closest.transform.position, 5.0f * Time.deltaTime);
+
+        // Check if we've collided with the enemy
+        float distance = Vector2.Distance(transform.position, closest.transform.position);
+        if (distance < 0.1f) // Small threshold for collision
         {
-            //move towards the closest enemy
-            transform.position = Vector2.MoveTowards(transform.position, closest.transform.position, 0.025f);
-            
-            // Check if we've collided with the enemy
-            float distance = Vector2.Distance(transform.position, closest.transform.position);
-            if (distance < 0.1f)  // Small threshold for collision
-            {
-                AudioManager.Instance.PlayPopAndLaugh();
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            transform.position += new Vector3(0.0f, 0.1f, 0.0f) * Time.deltaTime;
+            AudioManager.Instance.PlayPopAndLaugh();
+            Destroy(gameObject);
         }
     }
+    else
+    {
+        // Fallback movement with an appropriate speed
+        transform.position += new Vector3(0.0f, 5.0f, 0.0f) * Time.deltaTime;
+    }
+}
+
 
 
     //Find the closest enemy

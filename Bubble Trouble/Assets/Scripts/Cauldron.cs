@@ -176,7 +176,7 @@ public class Cauldron : MonoBehaviour
                 spriteRenderer.color = new Color(0.0f, 0.0f, 0.8f);
                 break;
             case 3://purple
-                spriteRenderer.color = new Color(0.6f, 0.0f, 0.8f);
+                spriteRenderer.color = new Color(0.8f, 0.0f, 0.6f);
                 break;
             default://green
                 spriteRenderer.color = new Color(0.0f, 0.8f, 0.2f);
