@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip bgmClip;
     [SerializeField] private AudioClip boilClip;
     [SerializeField] private AudioClip witchLaughClip;
+    [SerializeField] private AudioClip screamClip;
+
 
     private void Awake()
     {
@@ -53,6 +55,11 @@ public class AudioManager : MonoBehaviour
         {
             witchLaughClip = Resources.Load<AudioClip>("witch-laugh");
         }
+        if (screamClip == null)
+        {
+            screamClip = Resources.Load<AudioClip>("cartoon-scream-1-6835");
+        }
+
     }
 
 
@@ -103,4 +110,13 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(witchLaughClip);
         }
     }
+
+    public void PlayScream()
+    {
+        if (screamClip != null)
+        {
+            sfxSource.PlayOneShot(screamClip);
+        }
+    }
+
 }
