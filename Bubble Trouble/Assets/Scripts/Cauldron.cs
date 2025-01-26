@@ -60,7 +60,6 @@ public class Cauldron : MonoBehaviour
     //Adds an ingredient to the cauldron, kicking out any old ingredient
     public void addIngredient(Ingredient ingredient)
     {
-        
         //if there is a current ingredient, kick it out
         if(currentIngredient != null)
         {
@@ -72,7 +71,11 @@ public class Cauldron : MonoBehaviour
         currentIngredient = ingredient;
         //reset the cooldown
         cooldown = COOLDOWN_TIME;
+        
+        // Play boil sound
+        AudioManager.Instance.PlayBoilSound();
     }
+
 
     //Decrement the cooldown when there's an ingredient
     //and put it back when its done being used
@@ -131,11 +134,14 @@ public class Cauldron : MonoBehaviour
                 float enemyDistance = Vector2.Distance(bubble.transform.position, bubble.closestEnemy().transform.position);
                 if (enemyDistance < 1.0f)
                 {
-                    Destroy(bubble.closestEnemy());
-                    enemies.Remove(bubble.closestEnemy());
+                    GameObject enemyToDestroy = bubble.closestEnemy();
+                    Destroy(enemyToDestroy);
+                    enemies.Remove(enemyToDestroy);
                     Destroy(bubble.gameObject);
                     bubbles.Remove(bubble);
+                    AudioManager.Instance.PlayWitchLaugh();
                     return;
+
                 }
             }
             
