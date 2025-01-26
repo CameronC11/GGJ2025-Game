@@ -65,6 +65,7 @@ public class Cauldron : MonoBehaviour
         if(currentIngredient != null)
         {
             currentIngredient.moveToStart();
+            currentIngredient.GetComponent<SpriteRenderer>().enabled = true;
         }
 
         //add the new ingredient
