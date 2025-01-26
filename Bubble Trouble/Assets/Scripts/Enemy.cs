@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     //declare variables
     public int color;
-    private float speed;
+    public float speed;
     private Vector2 startPos;
     private Vector2 target;
 
