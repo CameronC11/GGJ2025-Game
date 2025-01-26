@@ -139,7 +139,8 @@ public class Cauldron : MonoBehaviour
                     enemies.Remove(enemyToDestroy);
                     Destroy(bubble.gameObject);
                     bubbles.Remove(bubble);
-                    AudioManager.Instance.PlayWitchLaugh();
+                    AudioManager.Instance.PlayPopAndLaugh();
+
                     return;
 
                 }
