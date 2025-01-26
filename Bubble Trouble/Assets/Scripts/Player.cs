@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public Cauldron cauldron;
     public GameObject enemySpawner;
 
+     private WitchHealthBar witchHealth;
+
     //declare positions
     private Vector3 mousePos;
 
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
         //init others
         cauldron = cauldronObj.GetComponent<Cauldron>();
         enemies = enemySpawner.GetComponent<EnemySpawner>().enemies;
+        witchHealth = GetComponent<WitchHealthBar>();
     }
 
     // UPDATE METHOD
@@ -136,6 +139,7 @@ public class Player : MonoBehaviour
             float enemyDistance = Vector2.Distance(transform.position, enemy.transform.position);
             if (enemyDistance < 2.5f)
             {
+                witchHealth.TakeDamage(1);
                 Destroy(enemy);
                 enemies.Remove(enemy);
                 //health--;
