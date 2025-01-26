@@ -152,8 +152,6 @@ public class Cauldron : MonoBehaviour
                     player.score += SCORE_VALUE;
 
 
-                    AudioManager.Instance.PlayWitchLaugh();
-
                     return;
 
                 }
