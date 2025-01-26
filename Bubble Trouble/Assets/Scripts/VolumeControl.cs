@@ -36,5 +36,12 @@ public class VolumeControl : MonoBehaviour
     {
         // Update character noises volume
         characterNoisesSource.volume = value;
+        
+        // Update AudioManager SFX volume if it exists
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SfxVolume = value;
+        }
     }
+
 }
