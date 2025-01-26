@@ -14,7 +14,7 @@ public class TitleScreenManager : MonoBehaviour
     public Button backButton;           // The "Back" button in the settings menu
 
     [Header("Scene Names")]
-    public string gameSceneName = "GameScene"; // Name of the scene to load for the game
+    public string gameSceneName = "SampleScene"; // Name of the scene to load for the game
     public string mainMenuSceneName = "Title"; // Name of the main menu scene
 
     private void Start()
@@ -33,7 +33,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         Debug.Log("Game Started!");
         settingsMenu.SetActive(false);
-        titleScreen.SetActive(false); // Hide title screen when starting the game
+        
         SceneManager.LoadScene(gameSceneName); // Load the GameScene
     }
 

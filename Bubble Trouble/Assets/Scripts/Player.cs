@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Player : MonoBehaviour
     -----------Variables---------
     \***************************/
 
-    
+    public Text scoreText;
 
     //init other objects
     public Ingredient[] ingredients;
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
     // UPDATE METHOD
     void Update()
     {
+        UpdateScoreText();
         //is the player holding an ingredient?
         dragAndDrop();
         //is the player hit by an enemy?
@@ -145,6 +147,14 @@ public class Player : MonoBehaviour
                 //health--;
                 return;
             }
+        }
+    }
+
+     private void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
         }
     }
 
