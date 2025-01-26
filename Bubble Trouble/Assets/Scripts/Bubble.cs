@@ -14,6 +14,7 @@ public class Bubble : MonoBehaviour
     public CircleCollider2D bubbleCollider;
     private SpriteRenderer spriteRenderer;
     public List<GameObject> enemies;
+    // [SerializeField] public GameObject WaterFX;
 
     //declare other objects
     public GameObject enemySpawner;
@@ -29,8 +30,14 @@ public class Bubble : MonoBehaviour
         enemySpawner = GameObject.Find("EnemySpawner");
         enemies = enemySpawner.GetComponent<EnemySpawner>().enemies;
 
+        // if (WaterFX == null)
+        // {
+        //     Debug.LogError("WaterFX prefab not assigned to Bubble component!");
+        // }
+
         setColor();
     }
+
 
     //UPDATE METHOD
     void Update()
@@ -52,8 +59,21 @@ public class Bubble : MonoBehaviour
         if (distance < 0.1f) // Small threshold for collision
         {
             AudioManager.Instance.PlayPopAndLaugh();
+            
+            // Spawn effect before destroying the bubble
+            // if (WaterFX != null)
+            // {
+            //     GameObject wfx = Instantiate(WaterFX, transform.position, Quaternion.identity);
+            //     Destroy(wfx, 2f);
+            // }
+            // else
+            // {
+            //     Debug.LogWarning("WaterFX prefab not assigned to Bubble!");
+            // }
+            
             Destroy(gameObject);
         }
+
     }
     else
     {

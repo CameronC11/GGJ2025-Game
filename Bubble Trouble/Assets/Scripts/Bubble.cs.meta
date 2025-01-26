@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 2919738542462ec42afdde951685c32d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bubbleCollider: {instanceID: 0}
+  - WaterFX: {fileID: 4346624834467470130, guid: 7dc55100580770f41adc23b4a6ee73b5, type: 3}
+  - enemySpawner: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
