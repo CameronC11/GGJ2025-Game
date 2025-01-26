@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WitchHealthBar : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class WitchHealthBar : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, hearts.Length);  // Ensure health doesn't go below 0 or above max
         UpdateHealthBar();  // Update the health bar when taking damage
         AudioManager.Instance.PlayScream();  // Play scream when losing health
+
+        if (currentHealth == 0) // If no health left, load the Game Over scene
+        {
+            Debug.Log("Game Over triggered!");  // Check if this is printed in the console
+            SceneManager.LoadScene("gameOverScene");  // Replace "GameOver" with the actual name of your Game Over scene
+        }
     }
 
 

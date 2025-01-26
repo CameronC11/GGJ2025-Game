@@ -13,12 +13,10 @@ public class Bubble : MonoBehaviour
     public int color = -1;
     public CircleCollider2D bubbleCollider;
     private SpriteRenderer spriteRenderer;
-    [SerializeField]
-    private List<GameObject> enemies;
+    public List<GameObject> enemies;
 
     //declare other objects
-    [SerializeField]
-    private GameObject enemySpawner;
+    public GameObject enemySpawner;
 
     /***************************\
     -----------Methods-----------

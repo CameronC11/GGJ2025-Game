@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Cauldron : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class Cauldron : MonoBehaviour
     \***************************/
 
     //init cooldown start time
-    const float COOLDOWN_TIME = 1.5f;
+    private float COOLDOWN_TIME = 1.5f;//reduce as time goes on
+    public const int SCORE_VALUE = 100;
 
     //declare other objects
     [SerializeField]
     private Ingredient currentIngredient;
     public GameObject enemySpawnerObj;
+    public GameObject playerObj;
 
     //declare prefabs
     public GameObject bubblePrefab;
@@ -28,6 +31,7 @@ public class Cauldron : MonoBehaviour
     private float cooldown;
     public List<Bubble> bubbles;
     public List<GameObject> enemies;
+    private Player player;
     
 
     /***************************\
@@ -42,6 +46,8 @@ public class Cauldron : MonoBehaviour
         cooldown = COOLDOWN_TIME;
         color = -1;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        player = playerObj.GetComponent<Player>();
         bubbles = new List<Bubble>();
         enemies = enemySpawnerObj.GetComponent<EnemySpawner>().enemies;
     }
@@ -128,7 +134,7 @@ public class Cauldron : MonoBehaviour
         if(bubbles.Count <= 0) { return; }
         foreach(Bubble bubble in bubbles)
         {
-            if(bubble.closestEnemy() != null)
+            if (bubble.closestEnemy() != null)
             {
                 //if the bubble is within a certain distance, delete both
                 float enemyDistance = Vector2.Distance(bubble.transform.position, bubble.closestEnemy().transform.position);
@@ -141,11 +147,18 @@ public class Cauldron : MonoBehaviour
                     bubbles.Remove(bubble);
                     AudioManager.Instance.PlayPopAndLaugh();
 
+
+                    //increase player score
+                    player.score += SCORE_VALUE;
+
+
+                    AudioManager.Instance.PlayWitchLaugh();
+
                     return;
 
                 }
             }
-            
+
         }
         
     }
