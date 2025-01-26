@@ -18,6 +18,7 @@ public class WitchHealthBar : MonoBehaviour
         currentHealth -= damage;  // Decrease health
         currentHealth = Mathf.Clamp(currentHealth, 0, hearts.Length);  // Ensure health doesn't go below 0 or above max
         UpdateHealthBar();  // Update the health bar when taking damage
+        AudioManager.Instance.PlayScream();  // Play scream when losing health
 
         if (currentHealth == 0) // If no health left, load the Game Over scene
         {
@@ -25,6 +26,7 @@ public class WitchHealthBar : MonoBehaviour
             SceneManager.LoadScene("gameOverScene");  // Replace "GameOver" with the actual name of your Game Over scene
         }
     }
+
 
     void UpdateHealthBar()
     {

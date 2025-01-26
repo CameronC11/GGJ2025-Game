@@ -13,6 +13,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip bgmClip;
     [SerializeField] private AudioClip boilClip;
     [SerializeField] private AudioClip witchLaughClip;
+    [SerializeField] private AudioClip screamClip;
+    [SerializeField] private AudioClip popClip;
+
+
 
     private void Awake()
     {
@@ -53,6 +57,16 @@ public class AudioManager : MonoBehaviour
         {
             witchLaughClip = Resources.Load<AudioClip>("witch-laugh");
         }
+        if (screamClip == null)
+        {
+            screamClip = Resources.Load<AudioClip>("cartoon-scream-1-6835");
+        }
+        if (popClip == null)
+        {
+            popClip = Resources.Load<AudioClip>("pop-39222");
+        }
+
+
     }
 
 
@@ -96,6 +110,40 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    public void PlayPopAndLaugh()
+    {
+        if (popClip != null)
+        {
+            // Create a temporary AudioSource for the pop sound
+            AudioSource tempSource = gameObject.AddComponent<AudioSource>();
+            tempSource.clip = popClip;
+            tempSource.time = 0.22f; // Start 0.1 seconds into the clip
+            tempSource.Play();
+            
+            // Clean up the temporary AudioSource after it's done
+            StartCoroutine(CleanupTempAudioSource(tempSource, popClip.length - 0.1f));
+            StartCoroutine(PlayLaughAfterDelay(0.2f));
+        }
+    }
+
+    private IEnumerator CleanupTempAudioSource(AudioSource tempSource, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(tempSource);
+    }
+
+
+
+    private IEnumerator PlayLaughAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (witchLaughClip != null)
+        {
+            sfxSource.PlayOneShot(witchLaughClip);
+        }
+    }
+
+    // Keep this for backward compatibility
     public void PlayWitchLaugh()
     {
         if (witchLaughClip != null)
@@ -103,4 +151,14 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(witchLaughClip);
         }
     }
+
+
+    public void PlayScream()
+    {
+        if (screamClip != null)
+        {
+            sfxSource.PlayOneShot(screamClip);
+        }
+    }
+
 }

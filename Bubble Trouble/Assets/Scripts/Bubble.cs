@@ -41,17 +41,26 @@ public class Bubble : MonoBehaviour
     //Move to enemy
     void moveToEnemy()
     {
-        if(closestEnemy() != null && closestEnemy().GetComponent<Enemy>().color == color)
+        GameObject closest = closestEnemy();
+        if(closest != null && closest.GetComponent<Enemy>().color == color)
         {
             //move towards the closest enemy
-            transform.position = Vector2.MoveTowards(transform.position, closestEnemy().transform.position, 0.025f);
-
+            transform.position = Vector2.MoveTowards(transform.position, closest.transform.position, 0.025f);
+            
+            // Check if we've collided with the enemy
+            float distance = Vector2.Distance(transform.position, closest.transform.position);
+            if (distance < 0.1f)  // Small threshold for collision
+            {
+                AudioManager.Instance.PlayPopAndLaugh();
+                Destroy(gameObject);
+            }
         }
         else
         {
             transform.position += new Vector3(0.0f, 0.1f, 0.0f) * Time.deltaTime;
         }
     }
+
 
     //Find the closest enemy
     public GameObject closestEnemy()
