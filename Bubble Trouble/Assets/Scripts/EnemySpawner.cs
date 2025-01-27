@@ -62,27 +62,31 @@ public class EnemySpawner : MonoBehaviour
     //Sets the cooldown time
     private void setCooldownTime()
     {
-        cooldownTime = 4.0f;
-        if(player.score > 1000)
+        cooldownTime = 4f;
+        if (player.score > 10000)
         {
-            cooldownTime = 2.0f;
-        }
-        else if (player.score > 2000)
-        {
-            cooldownTime = 1.0f;
-        }
-        else if (player.score > 3000)
-        {
-            cooldownTime = 0.75f;
+            cooldownTime = 1f;
         }
         else if (player.score > 5000)
         {
-            cooldownTime = 0.5f;
+            cooldownTime = 1.5f;
         }
-        else if (player.score > 100000)
+        else if (player.score > 3000)
         {
-            cooldownTime = 0.01f;
+            cooldownTime = 1.75f;
         }
+         else if (player.score > 2000)
+        {
+            cooldownTime = 2f;
+        }
+    
+        else if(player.score > 1000)
+        {
+            cooldownTime = 3f;
+        }
+        
+         
+        
     }
 
     //Sets enemy speed
@@ -90,23 +94,23 @@ public class EnemySpawner : MonoBehaviour
     {
         Enemy enemy = enemyObj.GetComponent<Enemy>();
 
-        enemy.speed = 0.25f;
+        enemy.speed = 10.25f;
 
         if (player.score > 1000)
         {
-            enemy.speed = 0.30f;
-        }
-        else if (player.score > 2000)
-        {
             enemy.speed = 0.50f;
         }
-        else if (player.score > 3000)
+        if (player.score > 2000)
         {
-            enemy.speed = 0.7f;
+            enemy.speed = 0.75f;
         }
-        else if (player.score > 5000)
+        if (player.score > 3000)
         {
-            enemy.speed = 1.0f;
+            enemy.speed = 1f;
+        }
+        if (player.score > 5000)
+        {
+            enemy.speed = 2f;
         }
     }
 
